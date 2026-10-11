@@ -1,6 +1,8 @@
 # Abaqus for Zed
 
-Abaqus input file support (`.inp`, `.inc`, `.incl`) for the Zed editor, built on a new Tree-sitter grammar.
+Syntax highlighting and editor support for [Abaqus](https://www.3ds.com/products/simulia/abaqus) input files (`.inp`, `.inc`, `.incl`) in the [Zed](https://zed.dev) editor, built on a new Tree-sitter grammar.
+
+Abaqus is the finite element analysis software from Dassault Systèmes SIMULIA. This extension helps you read and edit Abaqus input decks; it doesn't run Abaqus and doesn't need an Abaqus installation.
 
 ![Highlighting preview](docs/preview.png)
 
@@ -25,12 +27,34 @@ Abaqus input file support (`.inp`, `.inc`, `.incl`) for the Zed editor, built on
 - **Comment toggling** with `Ctrl+/`, using `** `.
 - **Large files.** A 28 MB / 550,000-line mesh parses in a few seconds in the background, and highlighting stays on.
 
-## Install (Linux / macOS)
+## Install
 
-1. Run `bash install.sh` in this folder. Zed only loads grammars from a git commit, so the script commits `tree-sitter-abaqus/` if it has changed and writes this repository's path and that commit into `extension.toml`.
-2. In Zed, open the command palette, run **zed: install dev extension**, and choose this folder. The first install compiles the grammar, which takes a moment. `zed: open log` shows any errors. If it complains about Rust, install it via rustup and try again.
+The extension isn't in Zed's extension registry yet, so you install it from this repository as a dev extension. This works on Linux, macOS and Windows.
+
+**You need:** [Zed](https://zed.dev) and [git](https://git-scm.com). Zed compiles the grammar itself; nothing else needs to be built by hand.
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/QutritLogic/zed-abaqus.git
+   ```
+2. In Zed, open the command palette (`Ctrl+Shift+P`, or `Cmd+Shift+P` on macOS), run **zed: install dev extension**, and choose the `zed-abaqus` folder you just cloned.
+3. Wait a moment while Zed downloads and compiles the grammar. **Abaqus** then appears on the Extensions page (`zed: extensions`).
 
 Open an `.inp` file. The language indicator in the status bar should say **Abaqus**.
+
+**If it doesn't work:**
+
+- Run `zed: open log` and look for errors about the Abaqus extension or grammar.
+- If the log complains about Rust, install it from [rustup.rs](https://rustup.rs) and try again.
+- If the file opens as plain text, check that it really ends in `.inp`, `.inc` or `.incl`; Zed picks the language by file extension. Also see *File-type conflicts* under [Known limits](#known-limits).
+
+### Updating
+
+Run `git pull` in the cloned folder, then press **Rebuild** on the Abaqus entry in Zed's Extensions page.
+
+### Uninstalling
+
+Press **Uninstall** on the Abaqus entry in Zed's Extensions page, then delete the cloned folder.
 
 ## Changing the grammar or queries
 
@@ -39,7 +63,9 @@ Open an `.inp` file. The language indicator in the status bar should say **Abaqu
 | Colours / captures | Edit `languages/abaqus/highlights.scm`, then **Rebuild** the extension on Zed's Extensions page. |
 | Outline / text objects | Edit `outline.scm` / `textobjects.scm`, then Rebuild. |
 | Snippets | Edit `make_snippets.py`, run `python3 make_snippets.py`, then Rebuild. |
-| Grammar | Edit `tree-sitter-abaqus/grammar.js`, then run `tree-sitter generate` and `tree-sitter test` (needs `npm i -g tree-sitter-cli`). Run `bash install.sh` again and Rebuild. |
+| Grammar | Edit `tree-sitter-abaqus/grammar.js`, then run `tree-sitter generate` and `tree-sitter test` (needs `npm i -g tree-sitter-cli`). Run `bash install.sh` (Linux / macOS) and Rebuild. |
+
+Zed builds the grammar from the git commit named in `extension.toml`, not from your working folder. By default that is a commit on GitHub. While you work on the grammar, `install.sh` commits `tree-sitter-abaqus/` locally and points `extension.toml` at your clone and that commit. Don't commit that `extension.toml` change; run `git checkout extension.toml` to go back to the GitHub version. When your grammar changes are pushed, set `rev` to the pushed commit.
 
 `tree-sitter-abaqus/queries/` holds a copy of the queries for Tree-sitter's own tools (`tree-sitter highlight`, Neovim, Helix). Keep it in sync if you use those.
 
@@ -81,13 +107,15 @@ Override any of them in your Zed `settings.json`:
 | --- | --- |
 | `extension.toml`, `languages/`, `snippets/` | The Zed extension |
 | `tree-sitter-abaqus/` | The grammar: `grammar.js`, the generated parser in `src/`, tests in `test/corpus/` |
-| `install.sh` | Local development setup |
+| `install.sh` | Points the extension at your local clone while you work on the grammar |
 | `make_snippets.py` | Generates `snippets/abaqus.json` |
 
-## Publishing (optional)
+## Publishing to the Zed registry (planned)
 
-`install.sh` writes a local `file://` path into `extension.toml`, so don't push that version as-is if you want others to build from the repo. To list it in Zed's extension registry:
+`extension.toml` already points at this GitHub repository and a pushed commit, and the project has a license, both of which Zed's registry needs. The rest of the process is described in [Zed's publishing guide](https://zed.dev/docs/extensions/publishing/overview.html).
 
-- Set `repository` in `extension.toml` to this repo's GitHub URL and `rev` to a pushed commit. Keep `path = "tree-sitter-abaqus"`.
-- Add an open-source license; Zed's registry requires one.
-- Follow https://zed.dev/docs/extensions/publishing/overview.html
+## License
+
+[MIT](LICENSE).
+
+Abaqus and SIMULIA are trademarks or registered trademarks of Dassault Systèmes or its subsidiaries. This project is independent and not affiliated with or endorsed by Dassault Systèmes.

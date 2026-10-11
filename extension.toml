@@ -7,11 +7,11 @@ description = "Abaqus input files (.inp, .inc, .incl): syntax highlighting, outl
 
 snippets = ["./snippets/abaqus.json"]
 
-# The grammar lives in tree-sitter-abaqus/ inside this repository.
-# install.sh points this at your local clone for development. Before
-# publishing, set repository to this repo's GitHub URL and rev to a pushed
-# commit.
+# The grammar lives in tree-sitter-abaqus/ inside this repository. Zed builds
+# it from the commit given in rev, so rev must be a pushed commit that
+# contains the current grammar. When working on the grammar locally,
+# install.sh points this at your clone instead; don't commit that change.
 [grammars.abaqus]
-repository = "file:///path/to/zed-abaqus"
-rev = "REPLACE_WITH_COMMIT"
+repository = "https://github.com/QutritLogic/zed-abaqus"
+rev = "5539cc283fc5a665c76f6c1c5597b619398735a9"
 path = "tree-sitter-abaqus"
