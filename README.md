@@ -4,6 +4,8 @@ Syntax highlighting and editor support for [Abaqus](https://www.3ds.com/products
 
 Abaqus is the finite element analysis software from Dassault Systèmes SIMULIA. This extension helps you read and edit Abaqus input decks; it doesn't run Abaqus and doesn't need an Abaqus installation.
 
+Website: [qutrit.se/zed-abaqus](https://qutrit.se/zed-abaqus/)
+
 ![Highlighting preview](docs/preview.png)
 
 ## Features
