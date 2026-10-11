@@ -1,0 +1,17 @@
+id = "abaqus"
+name = "Abaqus"
+version = "0.1.0"
+schema_version = 1
+authors = ["QutritLogic"]
+description = "Abaqus input files (.inp, .inc, .incl): syntax highlighting, outline, text objects and snippets."
+
+snippets = ["./snippets/abaqus.json"]
+
+# The grammar lives in tree-sitter-abaqus/ inside this repository.
+# install.sh points this at your local clone for development. Before
+# publishing, set repository to this repo's GitHub URL and rev to a pushed
+# commit.
+[grammars.abaqus]
+repository = "file:///path/to/zed-abaqus"
+rev = "REPLACE_WITH_COMMIT"
+path = "tree-sitter-abaqus"

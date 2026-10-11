@@ -1,0 +1,588 @@
+{
+  "Heading": {
+    "prefix": "Heading",
+    "description": "*Heading",
+    "body": [
+      "Heading",
+      "${1:Model description}"
+    ]
+  },
+  "Part": {
+    "prefix": "Part",
+    "description": "*Part ... *End Part",
+    "body": [
+      "Part, name=${1:Part-1}",
+      "$0",
+      "*End Part"
+    ]
+  },
+  "Assembly": {
+    "prefix": "Assembly",
+    "description": "*Assembly ... *End Assembly",
+    "body": [
+      "Assembly, name=${1:Assembly}",
+      "$0",
+      "*End Assembly"
+    ]
+  },
+  "Instance": {
+    "prefix": "Instance",
+    "description": "*Instance ... *End Instance",
+    "body": [
+      "Instance, name=${1:Part-1-1}, part=${2:Part-1}",
+      "${3:0.}, ${4:0.}, ${5:0.}",
+      "*End Instance"
+    ]
+  },
+  "Step": {
+    "prefix": "Step",
+    "description": "*Step ... *End Step",
+    "body": [
+      "Step, name=${1:Step-1}, nlgeom=${2|NO,YES|}",
+      "$0",
+      "*End Step"
+    ]
+  },
+  "Include": {
+    "prefix": "Include",
+    "description": "*Include",
+    "body": [
+      "Include, input=${1:file.inp}"
+    ]
+  },
+  "Parameter": {
+    "prefix": "Parameter",
+    "description": "*Parameter",
+    "body": [
+      "Parameter",
+      "${1:name} = ${2:value}"
+    ]
+  },
+  "Restart": {
+    "prefix": "Restart",
+    "description": "*Restart, write",
+    "body": [
+      "Restart, write, frequency=${1:0}"
+    ]
+  },
+  "Preprint": {
+    "prefix": "Preprint",
+    "description": "*Preprint",
+    "body": [
+      "Preprint, echo=${1|NO,YES|}, model=${2|NO,YES|}, history=${3|NO,YES|}, contact=${4|NO,YES|}"
+    ]
+  },
+  "Node": {
+    "prefix": "Node",
+    "description": "*Node",
+    "body": [
+      "Node, nset=${1:nset_name}",
+      "${2:1}, ${3:0.}, ${4:0.}, ${5:0.}"
+    ]
+  },
+  "Element": {
+    "prefix": "Element",
+    "description": "*Element",
+    "body": [
+      "Element, type=${1:C3D8R}, elset=${2:elset_name}",
+      "${3:1}, ${4:nodes}"
+    ]
+  },
+  "Nset": {
+    "prefix": "Nset",
+    "description": "*Nset",
+    "body": [
+      "Nset, nset=${1:Set-1}",
+      "${2:1, 2, 3}"
+    ]
+  },
+  "Nset generate": {
+    "prefix": "Nset generate",
+    "description": "*Nset, generate",
+    "body": [
+      "Nset, nset=${1:Set-1}, generate",
+      "${2:1}, ${3:100}, ${4:1}"
+    ]
+  },
+  "Elset": {
+    "prefix": "Elset",
+    "description": "*Elset",
+    "body": [
+      "Elset, elset=${1:Set-1}",
+      "${2:1, 2, 3}"
+    ]
+  },
+  "Elset generate": {
+    "prefix": "Elset generate",
+    "description": "*Elset, generate",
+    "body": [
+      "Elset, elset=${1:Set-1}, generate",
+      "${2:1}, ${3:100}, ${4:1}"
+    ]
+  },
+  "Surface": {
+    "prefix": "Surface",
+    "description": "*Surface, element based",
+    "body": [
+      "Surface, type=ELEMENT, name=${1:Surf-1}",
+      "${2:elset}, ${3|S1,S2,S3,S4,S5,S6,SPOS,SNEG|}"
+    ]
+  },
+  "Surface node": {
+    "prefix": "Surface node",
+    "description": "*Surface, node based",
+    "body": [
+      "Surface, type=NODE, name=${1:Surf-1}",
+      "${2:nset}, ${3:1.}"
+    ]
+  },
+  "Material": {
+    "prefix": "Material",
+    "description": "*Material with density and elasticity",
+    "body": [
+      "Material, name=${1:Steel}",
+      "*Density",
+      "${2:7.85e-09},",
+      "*Elastic",
+      "${3:210000.}, ${4:0.3}"
+    ]
+  },
+  "Elastic": {
+    "prefix": "Elastic",
+    "description": "*Elastic",
+    "body": [
+      "Elastic, type=${1|ISOTROPIC,ENGINEERING CONSTANTS,LAMINA,ORTHOTROPIC,ANISOTROPIC|}",
+      "${2:210000.}, ${3:0.3}"
+    ]
+  },
+  "Density": {
+    "prefix": "Density",
+    "description": "*Density",
+    "body": [
+      "Density",
+      "${1:7.85e-09},"
+    ]
+  },
+  "Plastic": {
+    "prefix": "Plastic",
+    "description": "*Plastic, isotropic hardening",
+    "body": [
+      "Plastic, hardening=${1|ISOTROPIC,KINEMATIC,COMBINED,JOHNSON COOK|}",
+      "${2:250.}, ${3:0.}",
+      "${4:300.}, ${5:0.05}"
+    ]
+  },
+  "Expansion": {
+    "prefix": "Expansion",
+    "description": "*Expansion",
+    "body": [
+      "Expansion, zero=${1:20.}",
+      "${2:1.2e-05},"
+    ]
+  },
+  "Conductivity": {
+    "prefix": "Conductivity",
+    "description": "*Conductivity",
+    "body": [
+      "Conductivity",
+      "${1:50.},"
+    ]
+  },
+  "Specific Heat": {
+    "prefix": "Specific Heat",
+    "description": "*Specific Heat",
+    "body": [
+      "Specific Heat",
+      "${1:4.6e+08},"
+    ]
+  },
+  "Hyperelastic": {
+    "prefix": "Hyperelastic",
+    "description": "*Hyperelastic",
+    "body": [
+      "Hyperelastic, ${1|NEO HOOKE,MOONEY-RIVLIN,OGDEN,YEOH,ARRUDA-BOYCE|}",
+      "${2:C10}, ${3:D1}"
+    ]
+  },
+  "Damping": {
+    "prefix": "Damping",
+    "description": "*Damping",
+    "body": [
+      "Damping, alpha=${1:0.}, beta=${2:0.}"
+    ]
+  },
+  "Solid Section": {
+    "prefix": "Solid Section",
+    "description": "*Solid Section",
+    "body": [
+      "Solid Section, elset=${1:Set-1}, material=${2:Steel}",
+      "${3:,}"
+    ]
+  },
+  "Shell Section": {
+    "prefix": "Shell Section",
+    "description": "*Shell Section",
+    "body": [
+      "Shell Section, elset=${1:Set-1}, material=${2:Steel}",
+      "${3:1.}, ${4:5}"
+    ]
+  },
+  "Beam Section": {
+    "prefix": "Beam Section",
+    "description": "*Beam Section",
+    "body": [
+      "Beam Section, elset=${1:Set-1}, material=${2:Steel}, section=${3|RECT,CIRC,PIPE,BOX,I,L|}",
+      "${4:dimensions}",
+      "${5:0.}, ${6:0.}, ${7:-1.}"
+    ]
+  },
+  "Beam General Section": {
+    "prefix": "Beam General Section",
+    "description": "*Beam General Section",
+    "body": [
+      "Beam General Section, elset=${1:Set-1}, section=${2|GENERAL,MESHED,NONLINEAR GENERAL|}",
+      "${3:A}, ${4:I11}, ${5:I12}, ${6:I22}, ${7:J}",
+      "${8:0.}, ${9:0.}, ${10:-1.}",
+      "${11:E}, ${12:G}"
+    ]
+  },
+  "Membrane Section": {
+    "prefix": "Membrane Section",
+    "description": "*Membrane Section",
+    "body": [
+      "Membrane Section, elset=${1:Set-1}, material=${2:Steel}",
+      "${3:1.}"
+    ]
+  },
+  "Static": {
+    "prefix": "Static",
+    "description": "*Step with *Static and output",
+    "body": [
+      "Step, name=${1:Step-1}, nlgeom=${2|NO,YES|}",
+      "*Static",
+      "${3:1.}, ${4:1.}, ${5:1e-05}, ${6:1.}",
+      "$0",
+      "*Output, field, variable=PRESELECT",
+      "*Output, history, variable=PRESELECT",
+      "*End Step"
+    ]
+  },
+  "Dynamic Implicit": {
+    "prefix": "Dynamic Implicit",
+    "description": "*Step with implicit *Dynamic",
+    "body": [
+      "Step, name=${1:Step-1}, nlgeom=YES, inc=${2:1000}",
+      "*Dynamic, application=${3|QUASI-STATIC,MODERATE DISSIPATION,TRANSIENT FIDELITY|}",
+      "${4:0.01}, ${5:1.}, ${6:1e-08}, ${7:1.}",
+      "$0",
+      "*Output, field, variable=PRESELECT",
+      "*Output, history, variable=PRESELECT",
+      "*End Step"
+    ]
+  },
+  "Dynamic Explicit": {
+    "prefix": "Dynamic Explicit",
+    "description": "*Step with *Dynamic, Explicit",
+    "body": [
+      "Step, name=${1:Step-1}, nlgeom=YES",
+      "*Dynamic, Explicit",
+      ", ${2:1.}",
+      "*Bulk Viscosity",
+      "0.06, 1.2",
+      "$0",
+      "*Output, field, variable=PRESELECT, number interval=${3:20}",
+      "*Output, history, variable=PRESELECT",
+      "*End Step"
+    ]
+  },
+  "Frequency": {
+    "prefix": "Frequency",
+    "description": "*Step with *Frequency (Lanczos)",
+    "body": [
+      "Step, name=${1:Frequency}, perturbation",
+      "*Frequency, eigensolver=Lanczos, normalization=${2|DISPLACEMENT,MASS|}",
+      "${3:10}, , , , ,",
+      "$0",
+      "*Output, field, variable=PRESELECT",
+      "*End Step"
+    ]
+  },
+  "Buckle": {
+    "prefix": "Buckle",
+    "description": "*Step with *Buckle",
+    "body": [
+      "Step, name=${1:Buckle}, perturbation",
+      "*Buckle",
+      "${2:5}, , ${3:18}, ${4:30}",
+      "$0",
+      "*Output, field, variable=PRESELECT",
+      "*End Step"
+    ]
+  },
+  "Heat Transfer": {
+    "prefix": "Heat Transfer",
+    "description": "*Step with *Heat Transfer",
+    "body": [
+      "Step, name=${1:Heat}",
+      "*Heat Transfer, ${2|steady state,end=PERIOD|}",
+      "${3:1.}, ${4:1.}, ${5:1e-05}, ${6:1.}",
+      "$0",
+      "*Output, field, variable=PRESELECT",
+      "*End Step"
+    ]
+  },
+  "Coupled Temp-Displacement": {
+    "prefix": "Coupled Temp-Displacement",
+    "description": "*Step with *Coupled Temperature-Displacement",
+    "body": [
+      "Step, name=${1:Step-1}, nlgeom=YES",
+      "*Coupled Temperature-Displacement, deltmx=${2:10.}",
+      "${3:0.1}, ${4:1.}, ${5:1e-05}, ${6:1.}",
+      "$0",
+      "*Output, field, variable=PRESELECT",
+      "*End Step"
+    ]
+  },
+  "Boundary": {
+    "prefix": "Boundary",
+    "description": "*Boundary",
+    "body": [
+      "Boundary",
+      "${1:nset}, ${2:1}, ${3:3}, ${4:0.}"
+    ]
+  },
+  "Boundary fixed": {
+    "prefix": "Boundary fixed",
+    "description": "*Boundary, fixed shorthand",
+    "body": [
+      "Boundary",
+      "${1:nset}, ${2|ENCASTRE,PINNED,XSYMM,YSYMM,ZSYMM,XASYMM,YASYMM,ZASYMM|}"
+    ]
+  },
+  "Cload": {
+    "prefix": "Cload",
+    "description": "*Cload",
+    "body": [
+      "Cload",
+      "${1:nset}, ${2:2}, ${3:-1000.}"
+    ]
+  },
+  "Dload": {
+    "prefix": "Dload",
+    "description": "*Dload",
+    "body": [
+      "Dload",
+      "${1:elset}, ${2:GRAV}, ${3:9810.}, ${4:0.}, ${5:0.}, ${6:-1.}"
+    ]
+  },
+  "Dsload": {
+    "prefix": "Dsload",
+    "description": "*Dsload",
+    "body": [
+      "Dsload",
+      "${1:Surf-1}, P, ${2:1.}"
+    ]
+  },
+  "Amplitude": {
+    "prefix": "Amplitude",
+    "description": "*Amplitude, tabular",
+    "body": [
+      "Amplitude, name=${1:Amp-1}",
+      "${2:0.}, ${3:0.}, ${4:1.}, ${5:1.}"
+    ]
+  },
+  "Temperature": {
+    "prefix": "Temperature",
+    "description": "*Temperature",
+    "body": [
+      "Temperature",
+      "${1:nset}, ${2:20.}"
+    ]
+  },
+  "Initial Conditions temperature": {
+    "prefix": "Initial Conditions temperature",
+    "description": "*Initial Conditions, type=TEMPERATURE",
+    "body": [
+      "Initial Conditions, type=TEMPERATURE",
+      "${1:nset}, ${2:20.}"
+    ]
+  },
+  "Initial Conditions stress": {
+    "prefix": "Initial Conditions stress",
+    "description": "*Initial Conditions, type=STRESS",
+    "body": [
+      "Initial Conditions, type=STRESS",
+      "${1:elset}, ${2:S11}, ${3:S22}, ${4:S33}, ${5:S12}, ${6:S13}, ${7:S23}"
+    ]
+  },
+  "Initial Conditions velocity": {
+    "prefix": "Initial Conditions velocity",
+    "description": "*Initial Conditions, type=VELOCITY",
+    "body": [
+      "Initial Conditions, type=VELOCITY",
+      "${1:nset}, ${2:1}, ${3:0.}"
+    ]
+  },
+  "Contact": {
+    "prefix": "Contact",
+    "description": "General contact, all exterior",
+    "body": [
+      "Contact",
+      "*Contact Inclusions, ALL EXTERIOR",
+      "*Contact Property Assignment",
+      " ,  , ${1:IntProp-1}"
+    ]
+  },
+  "Contact Pair": {
+    "prefix": "Contact Pair",
+    "description": "*Contact Pair",
+    "body": [
+      "Contact Pair, interaction=${1:IntProp-1}, type=${2|SURFACE TO SURFACE,NODE TO SURFACE|}",
+      "${3:slave_surf}, ${4:master_surf}"
+    ]
+  },
+  "Surface Interaction": {
+    "prefix": "Surface Interaction",
+    "description": "*Surface Interaction with friction",
+    "body": [
+      "Surface Interaction, name=${1:IntProp-1}",
+      "1.,",
+      "*Friction",
+      "${2:0.2},",
+      "*Surface Behavior, pressure-overclosure=${3|HARD,EXPONENTIAL,LINEAR|}"
+    ]
+  },
+  "Friction": {
+    "prefix": "Friction",
+    "description": "*Friction",
+    "body": [
+      "Friction",
+      "${1:0.2},"
+    ]
+  },
+  "Tie": {
+    "prefix": "Tie",
+    "description": "*Tie",
+    "body": [
+      "Tie, name=${1:Tie-1}, adjust=${2|yes,no|}, position tolerance=${3:0.1}",
+      "${4:slave_surf}, ${5:master_surf}"
+    ]
+  },
+  "Kinematic Coupling": {
+    "prefix": "Kinematic Coupling",
+    "description": "*Coupling + *Kinematic",
+    "body": [
+      "Coupling, constraint name=${1:Coupling-1}, ref node=${2:ref_nset}, surface=${3:Surf-1}",
+      "*Kinematic"
+    ]
+  },
+  "Distributing Coupling": {
+    "prefix": "Distributing Coupling",
+    "description": "*Coupling + *Distributing",
+    "body": [
+      "Coupling, constraint name=${1:Coupling-1}, ref node=${2:ref_nset}, surface=${3:Surf-1}",
+      "*Distributing, weighting method=${4|UNIFORM,LINEAR,QUADRATIC,CUBIC|}"
+    ]
+  },
+  "MPC": {
+    "prefix": "MPC",
+    "description": "*MPC",
+    "body": [
+      "MPC",
+      "${1|BEAM,TIE,PIN,LINK|}, ${2:nset_a}, ${3:nset_b}"
+    ]
+  },
+  "Equation": {
+    "prefix": "Equation",
+    "description": "*Equation",
+    "body": [
+      "Equation",
+      "${1:2}",
+      "${2:nset_a}, ${3:1}, ${4:1.}, ${5:nset_b}, ${6:1}, ${7:-1.}"
+    ]
+  },
+  "Rigid Body": {
+    "prefix": "Rigid Body",
+    "description": "*Rigid Body",
+    "body": [
+      "Rigid Body, ref node=${1:ref_nset}, elset=${2:elset}"
+    ]
+  },
+  "Transform": {
+    "prefix": "Transform",
+    "description": "*Transform",
+    "body": [
+      "Transform, nset=${1:nset}, type=${2|R,C,S|}",
+      "${3:1.}, ${4:0.}, ${5:0.}, ${6:0.}, ${7:1.}, ${8:0.}"
+    ]
+  },
+  "Orientation": {
+    "prefix": "Orientation",
+    "description": "*Orientation",
+    "body": [
+      "Orientation, name=${1:Ori-1}, system=${2|RECTANGULAR,CYLINDRICAL,SPHERICAL|}",
+      "${3:1.}, ${4:0.}, ${5:0.}, ${6:0.}, ${7:1.}, ${8:0.}",
+      "${9:3}, ${10:0.}"
+    ]
+  },
+  "Connector Section": {
+    "prefix": "Connector Section",
+    "description": "*Connector Section",
+    "body": [
+      "Connector Section, elset=${1:Wire-1-Set}",
+      "${2|Beam,Hinge,Join,Cartesian,Bushing,Axial|},"
+    ]
+  },
+  "Output Field": {
+    "prefix": "Output Field",
+    "description": "*Output, field with node and element output",
+    "body": [
+      "Output, field, frequency=${1:1}",
+      "*Node Output",
+      "${2:U, RF}",
+      "*Element Output, directions=YES",
+      "${3:S, E, PEEQ}"
+    ]
+  },
+  "Output History": {
+    "prefix": "Output History",
+    "description": "*Output, history",
+    "body": [
+      "Output, history, frequency=${1:1}",
+      "*Energy Output",
+      "${2:ALLIE, ALLKE}"
+    ]
+  },
+  "Node Output": {
+    "prefix": "Node Output",
+    "description": "*Node Output",
+    "body": [
+      "Node Output${1:, nset=nset}",
+      "${2:U, RF}"
+    ]
+  },
+  "Element Output": {
+    "prefix": "Element Output",
+    "description": "*Element Output",
+    "body": [
+      "Element Output, directions=YES${1:, elset=elset}",
+      "${2:S, E, PEEQ}"
+    ]
+  },
+  "Node Print": {
+    "prefix": "Node Print",
+    "description": "*Node Print (to .dat)",
+    "body": [
+      "Node Print, nset=${1:nset}",
+      "${2:U, RF}"
+    ]
+  },
+  "El Print": {
+    "prefix": "El Print",
+    "description": "*El Print (to .dat)",
+    "body": [
+      "El Print, elset=${1:elset}",
+      "${2:S, E}"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "grammars": [
+    {
+      "name": "abaqus",
+      "camelcase": "Abaqus",
+      "scope": "source.abaqus",
+      "path": ".",
+      "file-types": ["inp", "inc", "incl"],
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "UNLICENSED",
+    "description": "Abaqus input file grammar for tree-sitter",
+    "authors": [{ "name": "QutritLogic" }]
+  }
+}

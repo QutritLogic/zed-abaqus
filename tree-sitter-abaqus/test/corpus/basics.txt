@@ -1,0 +1,91 @@
+==================
+Comment and keyword with parameters
+==================
+
+** a comment
+*Nset, nset=Set-1, generate
+1, 100, 1
+
+---
+
+(source_file
+  (comment)
+  (keyword_block
+    header: (keyword_line
+      name: (keyword_name)
+      parameter: (parameter name: (parameter_name) value: (value))
+      parameter: (parameter name: (parameter_name)))
+    (data_line (number) (number) (number))))
+
+==================
+Keyword line continued on the next line
+==================
+
+*Dsload, amplitude=Ramp,
+ follower=NO
+Surf, P, 10.
+
+---
+
+(source_file
+  (keyword_block
+    header: (keyword_line
+      name: (keyword_name)
+      parameter: (parameter name: (parameter_name) value: (value))
+      parameter: (parameter name: (parameter_name) value: (value)))
+    (data_line (identifier) (identifier) (number))))
+
+==================
+Empty fields, strings and parameter references
+==================
+
+*Shell Section, elset="Skin Set", material=Steel
+<thickness>, , 5
+
+---
+
+(source_file
+  (keyword_block
+    header: (keyword_line
+      name: (keyword_name)
+      parameter: (parameter name: (parameter_name) value: (string))
+      parameter: (parameter name: (parameter_name) value: (value)))
+    (data_line (parameter_ref) (number))))
+
+==================
+Nested sections, case-insensitive, no final newline
+==================
+
+*ASSEMBLY, name=A
+*Instance, name=I, part=P
+1., 0., 0.
+*end instance
+*End Assembly
+*Step, name=S
+*Static
+*End Step
+
+---
+
+(source_file
+  (assembly
+    start: (keyword_block
+      header: (keyword_line
+        name: (keyword_name)
+        parameter: (parameter name: (parameter_name) value: (value))))
+    (instance
+      start: (keyword_block
+        header: (keyword_line
+          name: (keyword_name)
+          parameter: (parameter name: (parameter_name) value: (value))
+          parameter: (parameter name: (parameter_name) value: (value)))
+        (data_line (number) (number) (number)))
+      end: (keyword_line name: (keyword_name)))
+    end: (keyword_line name: (keyword_name)))
+  (step
+    start: (keyword_block
+      header: (keyword_line
+        name: (keyword_name)
+        parameter: (parameter name: (parameter_name) value: (value))))
+    (keyword_block header: (keyword_line name: (keyword_name)))
+    end: (keyword_line name: (keyword_name))))
